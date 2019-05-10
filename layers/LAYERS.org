@@ -230,6 +230,7 @@
 - [[file:+tools/fasd/README.org][fasd]]
 - [[file:+tools/finance/README.org][finance]]
 - [[file:+tools/geolocation/README.org][geolocation]]
+- [[file:+tools/google-calendar/README.org][google-calendar]]
 - [[file:+tools/imenu-list/README.org][imenu-list]]
 - [[file:+tools/import-js/README.org][import-js]]
 - [[file:+tools/lsp/README.org][lsp]]
