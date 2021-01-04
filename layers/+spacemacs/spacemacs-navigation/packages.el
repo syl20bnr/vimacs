@@ -327,6 +327,7 @@
 
 (defun spacemacs-navigation/init-info+ ()
   (use-package info+
+    :straight nil
     :defer t
     :init
     (progn

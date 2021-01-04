@@ -19,10 +19,7 @@
         ;; force Spacemacs to fetch from it for now, it will always
         ;; pickup the MELPA version. So for now we use an explicit
         ;; recip to fetch from GitHUb the package.
-        (sql-indent :location (recipe
-                               :fetcher github
-                               :repo "alex-hhh/emacs-sql-indent"
-                               :files ("sql-indent.el")))
+        sql-indent
         (sqlfmt :location local)
         (sqlup-mode :toggle sql-capitalize-keywords)
         ))
@@ -193,6 +190,7 @@
 
 (defun sql/init-sqlfmt ()
   (use-package sqlfmt
+    :straight nil
     :commands sqlfmt-buffer
     :init
     (spacemacs/declare-prefix-for-mode 'sql-mode "m=" "formatting")

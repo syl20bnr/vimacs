@@ -37,8 +37,7 @@
         (ox-epub :toggle org-enable-epub-support)
         (ox-twbs :toggle org-enable-bootstrap-support)
         ;; use a for of ox-gfm to fix index generation
-        (ox-gfm :location (recipe :fetcher github :repo "syl20bnr/ox-gfm")
-                :toggle org-enable-github-support)
+        (ox-gfm :toggle org-enable-github-support)
         (org-re-reveal :toggle org-enable-reveal-js-support)
         persp-mode
         (ox-hugo :toggle org-enable-hugo-support)
@@ -92,6 +91,7 @@
 
 (defun org/init-ob ()
   (use-package ob
+    :straight nil
     :defer t
     :init
     (progn
@@ -451,6 +451,7 @@ Will work on both org-mode and any mode that accepts plain html."
 
 (defun org/init-org-agenda ()
   (use-package org-agenda
+    :straight nil
     :defer t
     :init
     (progn
@@ -608,6 +609,7 @@ Headline^^            Visit entry^^               Filter^^                    Da
 
 (defun org/init-org-expiry ()
   (use-package org-expiry
+    :straight nil
     :commands (org-expiry-insinuate
                org-expiry-deinsinuate
                org-expiry-insert-created

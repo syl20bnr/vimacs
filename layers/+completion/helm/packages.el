@@ -370,6 +370,7 @@
 
 (defun helm/init-helm-spacemacs-help ()
   (use-package helm-spacemacs-help
+    :straight nil
     :commands (helm-spacemacs-help-dotspacemacs
                helm-spacemacs-help
                helm-spacemacs-help-faq
@@ -388,6 +389,7 @@
 
 (defun helm/init-helm-spacemacs-faq ()
   (use-package helm-spacemacs-faq
+    :straight nil
     :commands helm-spacemacs-help-faq
     :init (spacemacs/set-leader-keys "h f" 'helm-spacemacs-help-faq)))
 
