@@ -45,7 +45,6 @@
     window-purpose
     (vterm :toggle (not (spacemacs/system-is-mswindows)))))
 
-
 (defun shell/init-comint ()
   (setq comint-prompt-read-only t)
   (add-hook 'comint-mode-hook 'spacemacs/disable-hl-line-mode)

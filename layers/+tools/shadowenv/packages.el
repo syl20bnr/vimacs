@@ -1,4 +1,4 @@
-;;; layers.el --- Python Layer declarations File for Spacemacs
+;;; packages.el --- Shadowenv Layer packages File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2021 Sylvain Benner & Contributors
 ;;
@@ -20,9 +20,27 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(spacemacs/add-available-project-type 'python)
 
-(when (and (boundp 'python-backend)
-           (eq python-backend 'lsp))
-  (configuration-layer/declare-layer-dependencies '(dap)))
+(defconst shadowenv-packages
+  '(eshell
+    shadowenv))
 
+(defun shadowenv/post-init-eshell ()
+  (add-hook 'eshell-mode-hook 'shadowenv-global-mode))
+
+(defun shadowenv/init-shadowenv ()
+  (use-package shadowenv
+    :defer (spacemacs/defer)
+    :spacediminish " 🆂" " [S]"
+    :init
+    (progn
+      (if shadowenv-enable-at-startup
+          (shadowenv-global-mode 1)
+        (add-hook 'prog-mode-hook 'shadowenv-global-mode))
+      (spacemacs|spacebind
+       :global
+       ("Shadowenv key bindings"
+        ("V" "Version/Environment"
+         ("S" "Shadowenv"
+          ("r" shadowenv-reload "Reload shadowenv configuration")
+          ("s" shadowenv-shadows "Display the environment shadows..."))))))))

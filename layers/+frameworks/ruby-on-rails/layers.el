@@ -23,4 +23,6 @@
 
 ;; Prerequisites
 
+(spacemacs/add-available-project-type 'ruby-on-rails)
+
 (configuration-layer/declare-layer-dependencies '(ruby))

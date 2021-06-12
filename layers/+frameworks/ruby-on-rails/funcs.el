@@ -1,4 +1,4 @@
-;;; config.el --- evil-snipe Layer configuration File for Spacemacs
+;;; funcs.el --- Ruby Layer functions File
 ;;
 ;; Copyright (c) 2012-2021 Sylvain Benner & Contributors
 ;;
@@ -20,8 +20,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
+
+;; projectile-rails
 
-;; Variables
-
-(defvar evil-snipe-enable-alternate-f-and-t-behaviors nil
-  "if non nil f/F/t/T behaviors are replaced by evil-snipe behavior.")
+(defun spacemacs//ruby-on-rails-setup-projectile-rails ()
+  "Setup `projectile-rails'."
+  (projectile-rails-mode))

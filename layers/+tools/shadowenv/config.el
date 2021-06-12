@@ -1,4 +1,4 @@
-;;; layers.el --- Python Layer declarations File for Spacemacs
+;;; config.el --- shadowenv configuration File for Spacemacs
 ;;
 ;; Copyright (c) 2012-2021 Sylvain Benner & Contributors
 ;;
@@ -20,9 +20,6 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-(spacemacs/add-available-project-type 'python)
 
-(when (and (boundp 'python-backend)
-           (eq python-backend 'lsp))
-  (configuration-layer/declare-layer-dependencies '(dap)))
-
+(defvar shadowenv-enable-at-startup nil
+  "If non-nil load and enable `shadowenv-mode' at startup.")

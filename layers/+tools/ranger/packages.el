@@ -25,6 +25,7 @@
 (setq ranger-packages
       '(
         (dired :location built-in)
+        evil-snipe
         golden-ratio
         ranger
         ))
@@ -36,6 +37,11 @@
     "atrd" 'deer
     "jD" 'deer-jump-other-window
     "jd" 'deer))
+
+(defun ranger/post-init-evil-snipe ()
+  (add-hook 'ranger-mode-hook 'turn-off-evil-snipe-mode)
+  (when evil-snipe-enable-alternate-f-and-t-behaviors
+    (add-hook 'ranger-mode-hook 'turn-off-evil-snipe-override-mode)))
 
 (defun ranger/init-ranger ()
   (use-package ranger

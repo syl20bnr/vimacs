@@ -36,6 +36,11 @@
     :modes ledger-mode))
 
 (defun finance/post-init-flycheck ()
+  ;; global-flycheck-mode is enabled lazily by prog-mode-hook, but
+  ;; ledger-mode derives from text-mode so we add this supplemental
+  ;; hook
+  (when syntax-checking-enable-by-default
+    (add-hook 'ledger-mode-hook 'global-flycheck-mode))
   (spacemacs/enable-flycheck 'ledger-mode))
 
 (defun finance/init-flycheck-ledger ()
@@ -78,10 +83,4 @@
       (add-hook 'ledger-mode-hook 'evil-normalize-keymaps)
       (add-hook 'ledger-mode-hook
                 (lambda () (setq-local pcomplete-termination-string "")))
-      ;; global-flycheck-mode is enabled lazily by prog-mode-hook, but
-      ;; ledger-mode derives from text-mode
-      (spacemacs|add-transient-hook ledger-mode-hook
-        (lambda () (when syntax-checking-enable-by-default
-                     (global-flycheck-mode 1)))
-        finance-lazy-load-flycheck)
       (evilified-state-evilify ledger-report-mode ledger-report-mode-map))))
