@@ -31,20 +31,9 @@
     org))
 
 (defun ess/post-init-company ()
-  ;; Julia
-  (spacemacs|add-company-backends
-    :backends company-ess-julia-objects
-    :modes ess-julia-mode inferior-ess-julia-mode)
-  ;; R
-  (spacemacs|add-company-backends
-    :backends (company-R-library company-R-args company-R-objects :separate)
-    :modes inferior-ess-r-mode)
-
-  ;; Set R company to lsp manually to include file completion
-  (unless (eq ess-r-backend 'lsp)
-    (spacemacs|add-company-backends
-      :backends (company-R-library company-R-args company-R-objects :separate)
-      :modes ess-r-mode)))
+  "Setup company for Julia and Inferior R.
+Additionally setup compnay for R if not using LSP."
+  (spacemacs//ess-setup-company))
 
 (defun ess/post-init-flycheck ()
   (spacemacs/enable-flycheck 'ess-r-mode))
@@ -79,6 +68,8 @@
            ("\\.[Jj][Oo][Gg]\\'" . ess-jags-mode)
            ("\\.[Jj][Mm][Dd]\\'" . ess-jags-mode))
     :commands (R stata julia SAS ess-julia-mode)
+    :hook (ess-r-mode-local-vars . spacemacs//ess-may-setup-r-lsp)
+          (inferior-ess-mode . spacemacs//ess-fix-read-only-inferior-ess-mode)
     :init
     (progn
       (setq ess-use-company nil
@@ -90,10 +81,6 @@
       (evil-set-initial-state 'ess-help-mode 'motion)
 
       (spacemacs/register-repl 'ess-site #'spacemacs/ess-start-repl)
-
-      (add-hook 'ess-r-mode-hook #'spacemacs//ess-may-setup-r-lsp)
-      (add-hook 'inferior-ess-mode-hook
-                'spacemacs//ess-fix-read-only-inferior-ess-mode)
 
       (with-eval-after-load 'ess-julia
         (spacemacs/ess-bind-keys-for-julia))
